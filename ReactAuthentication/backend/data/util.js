@@ -7,6 +7,14 @@ async function readData() {
 
 async function writeData(data) {
   await fs.writeFile('events.json', JSON.stringify(data));
+  // try {
+  //   const filePath = path.join(__dirname, '..', 'events.json');
+  //   await fs.writeFile(filePath, JSON.stringify(data, null, 2));
+  //   console.log('Data written successfully to:', filePath);
+  // } catch (error) {
+  //   console.error('Error writing data:', error);
+  //   throw error;
+  // }
 }
 
 exports.readData = readData;

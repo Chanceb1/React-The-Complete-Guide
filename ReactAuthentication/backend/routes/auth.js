@@ -9,6 +9,8 @@ router.post('/signup', async (req, res, next) => {
   const data = req.body;
   let errors = {};
 
+  console.log('Received signup request:', data); // Add logging
+
   if (!isValidEmail(data.email)) {
     errors.email = 'Invalid email.';
   } else {
@@ -38,6 +40,7 @@ router.post('/signup', async (req, res, next) => {
       .status(201)
       .json({ message: 'User created.', user: createdUser, token: authToken });
   } catch (error) {
+    console.error('Error in signup:', error);
     next(error);
   }
 });
