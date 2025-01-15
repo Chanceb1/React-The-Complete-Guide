@@ -49,6 +49,14 @@ export async function action({request}) {
     // });
   }
 
-  // soon: manages the token in the browser
+  const resData = await response.json();
+  const token = resData.token;
+
+  // store the token in localstorage which is a default storage api in the browser 
+  localStorage.setItem('token', token);
+  const expiration = new Date();
+  expiration.setHours(expiration.getHours() + 1); // creates a date thats 1 hr in the future
+  localStorage.setItem('expiration', expiration.toISOString()); // converts the date to a standard string format
+
   return redirect('/'); // redirect to the home page
 }
