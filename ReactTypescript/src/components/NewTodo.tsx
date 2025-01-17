@@ -1,9 +1,12 @@
-import { useRef } from 'react';
+import { useRef, useContext } from 'react';
 import classes from './NewTodo.module.css';
+import { TodosContext } from '../store/todo-context';
 
 // another way to define a functional component
 // const NewTodo: React.FC<{onAddTodo: (text: string) => void}> = (props) => {
-export default function NewTodo(props: { onAddTodo: (text: string) => void }) {
+export default function NewTodo() {
+    const todosCtx = useContext(TodosContext);
+
     const todoTextInputRef = useRef<HTMLInputElement>(null);
 
     const submitHandler = (event: React.FormEvent) => {
@@ -16,7 +19,7 @@ export default function NewTodo(props: { onAddTodo: (text: string) => void }) {
             return;
         }
 
-        props.onAddTodo(enteredText);
+        todosCtx.addTodo(enteredText);
     };
 
     return (
